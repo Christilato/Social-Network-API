@@ -1,17 +1,15 @@
+const router = require('express').Router();
+const {
+  getThoughts,
+  getSingleThought,
+  createThought,
+  updateThought,
+  deleteThought,
+} = require('../../controllers/appController');
+
+
 //api/thoughts
-//GET ALL THOUGHTS
-
-// GET SINGLE THOUGHT BY ID
-
-// POST TO CREATE A NEW THOUGHT
-
-//PUT-ROUTE TO UPDATE BY ITS ID
-
-//DELETE TO REMOVE BY ITS ID
-
+router.route('/').get(getThoughts).post(createThought);
 
 //api/thoughts/:thoughtsId/reactions
-//POST-ROUTE TO CREATE A REACTION STORED IN A SIGNLE THOUGHT'S REACTIONS ARRAY
-
-//DELETE TO PULL AND REMOVE A REACTION BY THE REACTION ID VALUE
 
