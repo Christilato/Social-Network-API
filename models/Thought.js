@@ -1,4 +1,4 @@
-const { MongoMissingCredentialsError } = require('mongodb');
+const moment = require ('moment');
 const { Schema, Types } = require('mongoose');
 
 const thoughtSchema = new Schema(
@@ -48,7 +48,7 @@ const reactionSchema = new Schema ({
       createdAt: {
         type: Date,
         default: Date.now,
-        get: createdAtVal => moment.(createdAtVal).format('MM DD YYY [at] hh:mm a')
+        get: createdAtVal => moment(createdAtVal).format('MM DD YYY [at] hh:mm a')
       },
     },
       {
