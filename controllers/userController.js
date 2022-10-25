@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { User } = require('../models');
 
 module.exports = {
   
@@ -7,6 +7,7 @@ module.exports = {
 //get all users
 getUsers(req, res) {
     User.find()
+      .select('-__v')
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
@@ -37,10 +38,16 @@ updateUser(req, res) {
       { $set: req.body },
       { runValidators: true, new: true }
     )
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: 'No user with this id!' })
-          : res.json(user)
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({ message: 'No user with this id!' })
+        }
+        res.json(user)
+      }
+      
+        // !user
+        //   ? res.status(404).json({ message: 'No user with this id!' })
+        //   : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -58,7 +65,26 @@ deleteUser(req, res) {
 
 ///api/users/:userId/friends/:friendId
 //PUT-ROUTE update by its id
+addFriend (req,res) {
+  User.findOneAndUpdate({ _id: req.params.userId }, { $addToSet: {friends: req.params.friendId}}, {new: true})
+  .then((user) => {
+    if (!user) {
+      return res.status(404).json({ message: 'No user with this id!' })
+    }
+    res.json(user)
+  }) 
+  .catch((err) => res.status(500).json(err));
+},
 
 //DELETE remove user by id
-
+removeFriend (req,res) {
+  User.findOneAndUpdate({ _id: req.params.userId }, { $pull: {friends: req.params.friendId}}, {new: true})
+  .then((user) => {
+    if (!user) {
+      return res.status(404).json({ message: 'No user with this id!' })
+    }
+    res.json(user)
+  }) 
+  .catch((err) => res.status(500).json(err));
+}
 };
