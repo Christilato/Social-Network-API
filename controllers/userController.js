@@ -1,14 +1,16 @@
 const { User, Thought } = require('../models');
 
 module.exports = {
+  
 // api/users
-//GET ALL USERS
+
+//get all users
 getUsers(req, res) {
     User.find()
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
-//GET SINGLE USER BY ID
+//get single user by id
 getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -19,7 +21,7 @@ getSingleUser(req, res) {
       )
       .catch((err) => res.status(500).json(err));
   },
-// POST A NEW USER
+// post a new user
 createUser(req, res) {
     User.create(req.body)
       .then((user) => res.json(user))
@@ -28,7 +30,7 @@ createUser(req, res) {
         return res.status(500).json(err);
       });
   },
-//PUT-ROUTE TO UPDATE CHARACTER BY ID
+//update user by id
 updateUser(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
@@ -42,7 +44,7 @@ updateUser(req, res) {
       )
       .catch((err) => res.status(500).json(err));
   },
-// DELETE- ROUTE TO REMOVE CHARACTER BY ID
+// delete user by id
 deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>

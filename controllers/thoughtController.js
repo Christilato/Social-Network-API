@@ -4,13 +4,14 @@ const { User, Thought } = require('../models');
 module.exports = {
 
 //api/thoughts
-//GET ALL THOUGHTS
+
+//get all thoughts
 getThoughts(req, res) {
     Thought.find()
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
-// GET SINGLE THOUGHT BY ID
+// get single thought by id
 getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
@@ -21,7 +22,7 @@ getSingleThought(req, res) {
       )
       .catch((err) => res.status(500).json(err));
   },
-// POST TO CREATE A NEW THOUGHT
+// create a new route
 createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => res.json(though))
@@ -30,7 +31,7 @@ createThought(req, res) {
         return res.status(500).json(err);
       });
   },
-//PUT-ROUTE TO UPDATE BY ITS ID
+//update route by id
 updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -44,7 +45,7 @@ updateThought(req, res) {
       )
       .catch((err) => res.status(500).json(err));
   },
-//DELETE TO REMOVE BY ITS ID
+//remove thought by id
 deleteThought(req, res) {
     User.findOneAndDelete({ _id: req.params.thoughtId })
       .then((user) =>
