@@ -1,6 +1,14 @@
 # Social-Network-API
-Your Challenge is to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. 
+The purpose of this project was to create an API for a social network web application where users can share their thoughts, react to other's thoughts, and create a friend list.
 
+Express.js was used for routing, a MongoDB database was used to store User and Thought data, and Mongoose was used for object data modeling (ODM).
+
+## Technologies Used
+Language: Javascript
+Backend: Express.js
+Database: MongoDDB
+ODM: Mongoose
+NPM: Moment.js
 
 ## Screenshot
 
