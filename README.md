@@ -4,11 +4,11 @@ The purpose of this project was to create an API for a social network web applic
 Express.js was used for routing, a MongoDB database was used to store User and Thought data, and Mongoose was used for object data modeling (ODM).
 
 ## Technologies Used
-Language: Javascript
-Backend: Express.js
-Database: MongoDDB
-ODM: Mongoose
-NPM: Moment.js
+1. Language: Javascript
+2. Backend: Express.js
+3. Database: MongoDDB
+4. ODM: Mongoose
+5. NPM: Moment.js
 
 ## Screenshot
 
